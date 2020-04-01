@@ -6,8 +6,6 @@
     playerScore = 0
     computerScore = 0
    
-    
-
     while ((playerScore < 5) && (computerScore < 5))
     {
     //randomize computer's choices
@@ -16,7 +14,7 @@
 
 
     const playerSelection = window.prompt();
-   
+
     const computerSelection = computerChoice;
 
     console.log(playRound(playerSelection.toUpperCase(), computerSelection.toUpperCase()))
@@ -45,7 +43,9 @@
              
          }
          // Player winning
-         else
+         else if ((computerSelection == "ROCK" && playerSelection == "PAPER") 
+        || (computerSelection == "PAPER" && playerSelection == "SCISSORS")   
+        || (computerSelection == "SCISSORS" && playerSelection == "ROCK"))
          {
               // adds a point to the player
               playerScore++
@@ -53,8 +53,13 @@
             return ("You Win! " + playerSelection.charAt(0).toUpperCase()+ playerSelection.toLowerCase().substring(1) + 
              " beats " + computerSelection.charAt(0).toUpperCase()+ computerSelection.toLowerCase().substring(1) + 
              "! \nScore: \n Player:"+playerScore+"\n Computer: "+computerScore)
-          
+                    
          }
+         else
+         {
+            return "Type a valid answer!"
+         }
+
     
 
 
