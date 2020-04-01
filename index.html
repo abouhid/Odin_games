@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+
+<script>
+
+    playerScore = 0
+    computerScore = 0
+   
+    
+
+    while ((playerScore < 5) && (computerScore < 5))
+    {
+    //randomize computer's choices
+    const computerOptions = ['Rock','Paper','Scissors'];
+    const computerChoice = computerOptions[Math.floor(Math.random() * 3)]
+
+
+    const playerSelection = window.prompt();
+   
+    const computerSelection = computerChoice;
+
+    console.log(playRound(playerSelection.toUpperCase(), computerSelection.toUpperCase()))
+
+
+    function playRound (playerSelection,computerSelection)
+    { 
+
+        // Tie
+        if (playerSelection == computerSelection)
+        {
+            return "Tie!\n Score: \n Player:"+playerScore+"\n Computer: "+computerScore
+        }
+        // Player Losing
+        else if ((playerSelection == "ROCK" && computerSelection == "PAPER") 
+        || (playerSelection == "PAPER" && computerSelection == "SCISSORS")   
+        || (playerSelection == "SCISSORS" && computerSelection == "ROCK"))
+         {
+             // adds a point to the computer
+             computerScore++
+
+             //answer with first capital letter
+             return ("You lose! " + computerSelection.charAt(0).toUpperCase()+ computerSelection.toLowerCase().substring(1) + 
+             " beats " + playerSelection.charAt(0).toUpperCase()+ playerSelection.toLowerCase().substring(1) + 
+             "! \n Score: \n Player:"+playerScore+"\n Computer: "+computerScore)
+             
+         }
+         // Player winning
+         else
+         {
+              // adds a point to the player
+              playerScore++
+
+            return ("You Win! " + playerSelection.charAt(0).toUpperCase()+ playerSelection.toLowerCase().substring(1) + 
+             " beats " + computerSelection.charAt(0).toUpperCase()+ computerSelection.toLowerCase().substring(1) + 
+             "! \nScore: \n Player:"+playerScore+"\n Computer: "+computerScore)
+          
+         }
+    
+
+
+    }
+
+    }
+
+    if (playerScore == 5)
+    {
+        alert("Player Won!")
+    }
+    else
+    {
+        alert("Computer Won!")
+    }
+
+
+</script>
+
