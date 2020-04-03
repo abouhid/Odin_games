@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="en"></html>
+<body>
+    <button id="buttonRock" value="ROCK" >Rock </button>
+    <button id="buttonPaper" value="PAPER" >Paper</button>
+    <button id="buttonScissors" value="SCISSORS" >Scissors</button> 
 
 <script>
 
-    playerScore = 0
-    computerScore = 0
-   
-    while ((playerScore < 5) && (computerScore < 5))
+    playerScore = 0;
+    computerScore = 0;
+    const computerOptions = ['ROCK','PAPER','SCISSORS'];
+
+
+    const div = document.createElement('div');
+    let body = document.getElementsByTagName("body")[0];
+    body.appendChild(div);
+    div.setAttribute('style', 'color: green');   
+    
+ 
+    document.getElementById("buttonRock").addEventListener("click", clickRock);
+    document.getElementById("buttonPaper").addEventListener("click", clickPaper);
+    document.getElementById("buttonScissors").addEventListener("click", clickScissors);
+        function clickRock()
+        {
+            let playerSelection = "ROCK";
+            div.textContent =playRound(playerSelection);
+        }
+        function clickPaper()
+        {
+            let playerSelection = "PAPER";
+            div.textContent =playRound(playerSelection);
+        }
+        function clickScissors()
+        {
+            let playerSelection = "SCISSORS";
+            div.textContent =playRound(playerSelection);
+        }
+      
+    function playRound (playerSelection)
     {
-    //randomize computer's choices
-    const computerOptions = ['Rock','Paper','Scissors'];
-    const computerChoice = computerOptions[Math.floor(Math.random() * 3)]
-
-
-    const playerSelection = window.prompt();
-
-    const computerSelection = computerChoice;
-
-    console.log(playRound(playerSelection.toUpperCase(), computerSelection.toUpperCase()))
-
-
-    function playRound (playerSelection,computerSelection)
-    { 
-
+        computerSelection = computerOptions[Math.floor(Math.random() * 3)]
         // Tie
         if (playerSelection == computerSelection)
         {
@@ -32,16 +49,21 @@
         else if ((playerSelection == "ROCK" && computerSelection == "PAPER") 
         || (playerSelection == "PAPER" && computerSelection == "SCISSORS")   
         || (playerSelection == "SCISSORS" && computerSelection == "ROCK"))
-         {
-             // adds a point to the computer
-             computerScore++
-
+        {
+         // adds a point to the computer
+            computerScore++
+            if (computerScore == 5)
+            {
+             alert("Computer Won!")
+                         
+            }
+            
              //answer with first capital letter
              return ("You lose! " + computerSelection.charAt(0).toUpperCase()+ computerSelection.toLowerCase().substring(1) + 
              " beats " + playerSelection.charAt(0).toUpperCase()+ playerSelection.toLowerCase().substring(1) + 
              "! \n Score: \n Player:"+playerScore+"\n Computer: "+computerScore)
              
-         }
+        }
          // Player winning
          else if ((computerSelection == "ROCK" && playerSelection == "PAPER") 
         || (computerSelection == "PAPER" && playerSelection == "SCISSORS")   
@@ -49,33 +71,22 @@
          {
               // adds a point to the player
               playerScore++
-
+              if (playerScore == 5)
+             {
+                 alert("Player Won!")
+             
+            }
             return ("You Win! " + playerSelection.charAt(0).toUpperCase()+ playerSelection.toLowerCase().substring(1) + 
              " beats " + computerSelection.charAt(0).toUpperCase()+ computerSelection.toLowerCase().substring(1) + 
              "! \nScore: \n Player:"+playerScore+"\n Computer: "+computerScore)
                     
-         }
-         else
-         {
-            return "Type a valid answer!"
-         }
+         } 
+    }  
 
     
-
-
-    }
-
-    }
-
-    if (playerScore == 5)
-    {
-        alert("Player Won!")
-    }
-    else
-    {
-        alert("Computer Won!")
-    }
+  
 
 
 </script>
 
+</body>
